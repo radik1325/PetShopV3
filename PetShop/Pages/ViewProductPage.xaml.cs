@@ -23,6 +23,7 @@ namespace PetShop.Pages
         public ViewProductPage()
         {
             InitializeComponent();
+            
             ProductListView.ItemsSource = Data.Pet_shopEntities.GetContext().Product.ToList();
         }
 

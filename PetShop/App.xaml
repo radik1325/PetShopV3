@@ -36,5 +36,12 @@
             <Setter Property="HorizontalAlignment" Value="Center"></Setter>
             <Setter Property="Background" Value="#FF498C51"></Setter>
         </Style>
+        <Style TargetType="ListViewItem">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ProductQuantityInStock}" Value="0">
+                    <Setter Property="Background" Value="LightGray"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

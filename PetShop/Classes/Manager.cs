@@ -21,7 +21,7 @@ namespace PetShop.Classes
                     string path = Directory.GetCurrentDirectory() + @"\img\" + item.ProductPhotoName;
                     if (File.Exists(path))
                     {
-                        //item.ProductPhotoName = File.ReadAllBytes(path); Не работает
+                        item.ProductPhoto = File.ReadAllBytes(path);
                     }
                 }
                 Data.Pet_shopEntities.GetContext().SaveChanges();

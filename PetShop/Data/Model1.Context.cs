@@ -15,14 +15,16 @@ namespace PetShop.Data
     
     public partial class Pet_shopEntities : DbContext
     {
-        private static Pet_shopEntities _Context; 
+        
+        
+        private static Pet_shopEntities _Context;
         public Pet_shopEntities()
             : base("name=Pet_shopEntities")
         {
         }
         public static Pet_shopEntities GetContext()
         {
-            if(_Context == null)
+            if (_Context == null)
             {
                 _Context = new Pet_shopEntities();
             }

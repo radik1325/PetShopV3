@@ -46,7 +46,8 @@
                             <Image.Source>
                                 <Binding Path="ProductPhoto">
                                     <Binding.TargetNullValue>
-                                        <BitmapImage UriSource="Resources/logo.png"></BitmapImage><!--Поменять на заглушку-->
+                                        <BitmapImage UriSource="/Resources/picture.png" />
+                                        <!--Поменять на заглушку-->
                                     </Binding.TargetNullValue>
                                 </Binding>
                             </Image.Source>
@@ -54,7 +55,7 @@
                         <StackPanel Grid.Column="1"
                                 VerticalAlignment="Center"
                                 HorizontalAlignment="Left">
-                            <TextBlock Text="{Binding ProductName.NameName, StringFormat='Наименование товара: {0}'}" FontWeight="Bold" /> <!--Не работает наименование товара-->
+                            <TextBlock Text="{Binding ProductName1.NameName, StringFormat={}Наименование товара: {0}}" FontWeight="Bold" /> <!--Работает, таблицы и столбы должны называться по разному-->
                             <TextBlock Text="{Binding ProductDescription,StringFormat={}Описание товара: {0}}" TextWrapping="wrap"></TextBlock>
                             <TextBlock Text="{Binding ProductManufacture.ManufactureName,StringFormat={}Производитель товара: {0}}"></TextBlock>
                             <TextBlock Text="{Binding ProductCost,StringFormat={}Цена: {0}}"></TextBlock>

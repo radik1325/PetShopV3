@@ -79,3 +79,30 @@ D:\WIN10\Рабочий стол\lisav\PetShop-main\PetShop\obj\Debug\PetShop.cs
 D:\WIN10\Рабочий стол\lisav\PetShop-main\PetShop\obj\Debug\PetShop.csproj.Up2Date
 D:\WIN10\Рабочий стол\lisav\PetShop-main\PetShop\obj\Debug\PetShop.exe
 D:\WIN10\Рабочий стол\lisav\PetShop-main\PetShop\obj\Debug\PetShop.pdb
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\bin\Debug\PetShop.exe.config
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\bin\Debug\PetShop.exe
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\bin\Debug\PetShop.pdb
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\bin\Debug\EntityFramework.dll
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\bin\Debug\EntityFramework.xml
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\PetShop.csproj.AssemblyReference.cache
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\MainWindow.g.cs
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\Pages\LoginPage.g.cs
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\Pages\ViewProductPage.g.cs
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\App.g.cs
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\PetShop_Content.g.cs
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\PetShop_MarkupCompile.cache
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\PetShop_MarkupCompile.lref
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\App.baml
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\MainWindow.baml
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\Pages\LoginPage.baml
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\Pages\ViewProductPage.baml
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\PetShop.g.resources
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\PetShop.Properties.Resources.resources
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\PetShop.csproj.GenerateResource.cache
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\PetShop.csproj.CoreCompileInputs.cache
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\PetShop.csproj.CopyComplete
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\PetShop.exe
+C:\Users\lisav\Desktop\PetShopAsSeif\PetShop-main\PetShop\obj\Debug\PetShop.pdb

@@ -18,6 +18,12 @@
             </Label>
             <PasswordBox x:Name="LoginPassBox">
             </PasswordBox>
+            <StackPanel x:Name="CaptchaContainer" Orientation="Vertical" VerticalAlignment="Top" Margin="10,0,10,0" >
+                <Image x:Name="CaptchaImage" Width="150" Height="40" />
+                <TextBox x:Name="CaptchaInput" Width="150" Height="30" Margin="0,5,0,0"/>
+                <Button Content="Введите капчу" Width="150" Height="30" Click="SubmitButton_Click"/>
+                <TextBlock x:Name="ResultText" Foreground="Red" HorizontalAlignment="Center"/>
+            </StackPanel>
             <Button x:Name="LoginButton" Content="Войти" Click="LoginButton_Click" Margin="10" >
                
             </Button>
