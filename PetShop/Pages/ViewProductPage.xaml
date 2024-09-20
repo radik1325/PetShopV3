@@ -15,6 +15,9 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
         </Grid.RowDefinitions>
+        <Label x:Name="CountOfLabel" HorizontalAlignment="Left" Margin="10,0,10,0"
+               Content="15/30" VerticalAlignment="Center" Grid.Row="0">
+        </Label>
         <Label x:Name="FIOLabel" HorizontalAlignment="Right" Margin="0,0,10,0"
                Content="ФИО" VerticalAlignment="Center" Grid.Row="0">
         </Label>
@@ -27,7 +30,8 @@
             <RadioButton x:Name="SourtDownRadioButton" Content="По убыванию" VerticalAlignment="Center" 
             HorizontalAlignment="Left" Margin="340,0,0,0" Checked="SourtDownRadioButton_Checked">
             </RadioButton>
-            <ComboBox x:Name="ManufacturedComboBox" Width="160" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="470,0,0,0" DisplayMemberPath="Name"></ComboBox>
+            <ComboBox x:Name="ManufacturedComboBox" Width="160" Height="30" HorizontalAlignment="Left" VerticalAlignment="Center" 
+                      Margin="470,0,0,0" DisplayMemberPath="ManufactureName" SelectionChanged="ManufacturedComboBox_SelectionChanged"></ComboBox>
         </Grid>
         <ListView x:Name="ProductListView"
                   VerticalContentAlignment="Center"

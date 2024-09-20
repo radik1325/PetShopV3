@@ -52,7 +52,7 @@ namespace PetShop.Pages
                     var user = Data.Pet_shopEntities.GetContext().User
                         .Where(d => d.UserLogin == LoginTextBox.Text
                         && d.UserPassword == LoginPassBox.Password).FirstOrDefault();
-
+                    Classes.Manager.CurrentUser = user;
                     switch (user.Role.RoleName)
                     {
                         case "Администратор":
@@ -60,14 +60,15 @@ namespace PetShop.Pages
                             break;
                         case "Клиент":
                             Classes.Manager.MainFrame.Navigate(new Pages.ViewProductPage());
+                            
                             break;
                         case "Менеджер":
                             Classes.Manager.MainFrame.Navigate(new Pages.ViewProductPage());
                             break;
                     }
                     MessageBox.Show("Успех!", "Успех!", MessageBoxButton.OK, MessageBoxImage.Information);
-                    isCaptchaVisible = false; // Сброс состояния капчи
-                    CaptchaContainer.Visibility = Visibility.Collapsed; // Скрыть капчу
+                    isCaptchaVisible = false; 
+                    CaptchaContainer.Visibility = Visibility.Collapsed; 
                 }
                 else
                 {
@@ -76,9 +77,9 @@ namespace PetShop.Pages
                     {
                         ResultText.Text = "При неудачом вводе следующая попытка через 10 секунд";
                         CaptchaInput.Text = "";
-                        isCaptchaVisible = true; // Отметить, что капча должна быть показана
-                        CaptchaContainer.Visibility = Visibility.Visible; // Показать капчу
-                        GenerateCaptcha(); // Генерация новой капчи
+                        isCaptchaVisible = true; 
+                        CaptchaContainer.Visibility = Visibility.Visible; 
+                        GenerateCaptcha(); 
                     }
 
                 }
@@ -91,7 +92,7 @@ namespace PetShop.Pages
 
         private void GuestButton_Click(object sender, RoutedEventArgs e)
         {
-            // Реализация для кнопки гостя
+            Classes.Manager.MainFrame.Navigate(new Pages.ViewProductPage());
         }
 
        
@@ -121,21 +122,21 @@ namespace PetShop.Pages
             RenderTargetBitmap bitmap = new RenderTargetBitmap(width, height, 96, 96, PixelFormats.Pbgra32);
             bitmap.Render(drawingVisual);
 
-            // Установка источника изображения для элемента управления
+          
             CaptchaImage.Source = bitmap;
         }
 
-        // Метод для рисования искаженного текста капчи
+      
         private void DrawDistortedText(DrawingContext dc, int width, int height, int fontSize)
         {
-            Typeface typeface = new Typeface("Arial");  // Шрифт для текста капчи
-            double x = 10;  // Начальная позиция X для текста
-            double y = 15;  // Начальная позиция Y для текста
+            Typeface typeface = new Typeface("Arial");  
+            double x = 10;  
+            double y = 15;  
 
-            // Перебор каждого символа текста капчи
+            
             foreach (char c in captchaText)
             {
-                // Создание отформатированного текста для символа
+               
                 FormattedText text = new FormattedText(
                     c.ToString(),
                     System.Globalization.CultureInfo.CurrentCulture,
@@ -144,17 +145,17 @@ namespace PetShop.Pages
                     fontSize,
                     Brushes.Black);
 
-                // Случайное смещение текста по X и Y
+               
                 double xOffset = random.Next(-5, 5);
                 double yOffset = random.Next(-5, 5);
                 dc.PushTransform(new TranslateTransform(x + xOffset, y + yOffset));
                 dc.DrawText(text, new Point(0, 0));
                 dc.Pop();
 
-                // Перемещение позиции для следующего символа
+                
                 x += text.WidthIncludingTrailingWhitespace + 10;
 
-                // Переход на новую строку, если достигнут край изображения
+               
                 if (x > width - 50)
                 {
                     x = 10;
@@ -163,54 +164,54 @@ namespace PetShop.Pages
             }
         }
 
-        // Метод для добавления шума к изображению капчи
+   
         private void AddNoise(DrawingContext dc, int width, int height)
         {
             Pen pen = new Pen(Brushes.Gray, 1);
 
-            // Рисование случайных линий
+      
             for (int i = 0; i < 5; i++)
             {
                 dc.DrawLine(pen, new Point(random.Next(width), random.Next(height)), new Point(random.Next(width), random.Next(height)));
             }
 
-            // Рисование случайных эллипсов
+            
             for (int i = 0; i < 20; i++)
             {
                 dc.DrawEllipse(Brushes.LightGray, null, new Point(random.Next(width), random.Next(height)), 2, 2);
             }
         }
 
-        // Метод для генерации случайного текста капчи
+       
         private string GenerateRandomText(int length)
         {
-            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";  // Доступные символы для капчи
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";  
             char[] stringChars = new char[length];
             for (int i = 0; i < length; i++)
             {
-                stringChars[i] = chars[random.Next(chars.Length)];  // Выбор случайного символа
+                stringChars[i] = chars[random.Next(chars.Length)];  
             }
             return new string(stringChars);
         }
 
-        // Обработчик клика на кнопку "Submit"
-        public void SubmitButton_Click(object sender, RoutedEventArgs e)
+       
+        public async void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            // Проверка введенного текста капчи
+            
             if (CaptchaInput.Text.Equals(captchaText, StringComparison.OrdinalIgnoreCase))
             {
-                ResultText.Text = "Captcha is correct!";  // Сообщение о правильности капчи
-                isCaptchaVisible = false;  // Сброс состояния видимости капчи
-                CaptchaContainer.Visibility = Visibility.Collapsed;  // Скрытие контейнера капчи
+                ResultText.Text = "Captcha is correct!";  
+                isCaptchaVisible = false; 
+                CaptchaContainer.Visibility = Visibility.Collapsed;  
             }
             else
             {
-                CaptchaInput.Text = "";  // Очистка введенного текста капчи
+                CaptchaInput.Text = "";
 
-                // Задержка перед генерацией новой капчи
-                Thread.Sleep(10000);
+                buttonCaptha.IsEnabled = false;  
+                await Task.Delay(10000);
+                buttonCaptha.IsEnabled = true;
 
-                // Генерация новой капчи
                 GenerateCaptcha();
             }
         }

@@ -11,6 +11,7 @@ namespace PetShop.Classes
      public static class Manager
     {
         public static Frame MainFrame { get; set; }
+        public static Data.User CurrentUser { get; set; }
         public static void GetImageData()
         {
             try
