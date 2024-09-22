@@ -187,3 +187,34 @@ C:\Users\lisav\Desktop\AS_SEIF_20_09\PetShop-main\PetShop\obj\Debug\PetShop.cspr
 C:\Users\lisav\Desktop\AS_SEIF_20_09\PetShop-main\PetShop\obj\Debug\PetShop.csproj.CopyComplete
 C:\Users\lisav\Desktop\AS_SEIF_20_09\PetShop-main\PetShop\obj\Debug\PetShop.exe
 C:\Users\lisav\Desktop\AS_SEIF_20_09\PetShop-main\PetShop\obj\Debug\PetShop.pdb
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\bin\Debug\PetShop.exe.config
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\bin\Debug\PetShop.exe
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\bin\Debug\PetShop.pdb
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\bin\Debug\EntityFramework.dll
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\bin\Debug\EntityFramework.SqlServer.dll
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\bin\Debug\EntityFramework.xml
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\bin\Debug\EntityFramework.SqlServer.xml
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\bin\Debug\ru\EntityFramework.resources.dll
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\PetShop.csproj.AssemblyReference.cache
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\MainWindow.g.cs
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\Pages\AddEditPage.g.cs
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\Pages\AdminLkPage.g.cs
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\Pages\LoginPage.g.cs
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\Pages\ViewProductPage.g.cs
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\App.g.cs
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\PetShop_Content.g.cs
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\PetShop_MarkupCompile.cache
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\PetShop_MarkupCompile.lref
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\App.baml
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\MainWindow.baml
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\Pages\LoginPage.baml
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\Pages\ViewProductPage.baml
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\Pages\AddEditPage.baml
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\Pages\AdminLkPage.baml
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\PetShop.g.resources
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\PetShop.Properties.Resources.resources
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\PetShop.csproj.GenerateResource.cache
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\PetShop.csproj.CoreCompileInputs.cache
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\PetShop.csproj.Up2Date
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\PetShop.exe
+D:\WIN10\Рабочий стол\Новая папка (11)\PetShopV3\PetShop\obj\Debug\PetShop.pdb
