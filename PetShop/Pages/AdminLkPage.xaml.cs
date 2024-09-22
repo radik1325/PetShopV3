@@ -126,12 +126,12 @@ namespace PetShop.Pages
 
 private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Classes.Manager.MainFrame.Navigate(new Pages.AddEditPage((sender as Button).DataContext as Data.Product));
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            Classes.Manager.MainFrame.Navigate(new Pages.AddEditPage());
+            Classes.Manager.MainFrame.Navigate(new Pages.AddEditPage(null));
         }
     }
 }

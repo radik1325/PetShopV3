@@ -15,8 +15,6 @@ namespace PetShop.Data
     
     public partial class Pet_shopEntities : DbContext
     {
-        
-        
         private static Pet_shopEntities _Context;
         public Pet_shopEntities()
             : base("name=Pet_shopEntities")
@@ -49,6 +47,7 @@ namespace PetShop.Data
         public virtual DbSet<StatusOrder> StatusOrder { get; set; }
         public virtual DbSet<Street> Street { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<Units> Units { get; set; }
         public virtual DbSet<User> User { get; set; }
     }
 }

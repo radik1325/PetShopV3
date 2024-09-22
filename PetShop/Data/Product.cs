@@ -20,7 +20,9 @@ namespace PetShop.Data
             this.OrderProduct = new HashSet<OrderProduct>();
         }
     
+        public Nullable<int> Id { get; set; }
         public string ProductArticleNumber { get; set; }
+        public Nullable<int> IdUnits { get; set; }
         public int ProductName { get; set; }
         public decimal ProductCost { get; set; }
         public int ProductDiscountAmount { get; set; }
@@ -39,5 +41,6 @@ namespace PetShop.Data
         public virtual ProductManufacture ProductManufacture { get; set; }
         public virtual ProductName ProductName1 { get; set; }
         public virtual ProductSupplier ProductSupplier1 { get; set; }
+        public virtual Units Units { get; set; }
     }
 }

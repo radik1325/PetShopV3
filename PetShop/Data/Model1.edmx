@@ -54,9 +54,11 @@
           <Key>
             <PropertyRef Name="ProductArticleNumber" />
           </Key>
+          <Property Name="Id" Type="int" />
           <Property Name="ProductArticleNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="IdUnits" Type="int" />
           <Property Name="ProductName" Type="int" Nullable="false" />
-          <Property Name="ProductCost" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ProductCost" Type="decimal" Precision="19" Scale="2" Nullable="false" />
           <Property Name="ProductDiscountAmount" Type="int" Nullable="false" />
           <Property Name="ProductManufacturer" Type="int" Nullable="false" />
           <Property Name="ProductSupplier" Type="int" Nullable="false" />
@@ -125,6 +127,13 @@
           <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Units">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -282,6 +291,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_Units">
+          <End Role="Units" Type="Self.Units" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Units">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdUnits" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -309,6 +330,7 @@
           <EntitySet Name="StatusOrder" EntityType="Self.StatusOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Street" EntityType="Self.Street" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Units" EntityType="Self.Units" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Order_PickPoint" Association="Self.FK_Order_PickPoint">
             <End Role="PickPoint" EntitySet="PickPoint" />
@@ -356,6 +378,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductSupplier" Association="Self.FK_Product_ProductSupplier">
             <End Role="ProductSupplier" EntitySet="ProductSupplier" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Units" Association="Self.FK_Product_Units">
+            <End Role="Units" EntitySet="Units" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
@@ -429,9 +455,11 @@
           <Key>
             <PropertyRef Name="ProductArticleNumber" />
           </Key>
+          <Property Name="Id" Type="Int32" />
           <Property Name="ProductArticleNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IdUnits" Type="Int32" />
           <Property Name="ProductName" Type="Int32" Nullable="false" />
-          <Property Name="ProductCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="ProductCost" Type="Decimal" Precision="19" Scale="2" Nullable="false" />
           <Property Name="ProductDiscountAmount" Type="Int32" Nullable="false" />
           <Property Name="ProductManufacturer" Type="Int32" Nullable="false" />
           <Property Name="ProductSupplier" Type="Int32" Nullable="false" />
@@ -446,6 +474,7 @@
           <NavigationProperty Name="ProductManufacture" Relationship="Self.FK_Product_ProductManufacture" FromRole="Product" ToRole="ProductManufacture" />
           <NavigationProperty Name="ProductName1" Relationship="Self.FK_Product_ProductName" FromRole="Product" ToRole="ProductName" />
           <NavigationProperty Name="ProductSupplier1" Relationship="Self.FK_Product_ProductSupplier" FromRole="Product" ToRole="ProductSupplier" />
+          <NavigationProperty Name="Units" Relationship="Self.FK_Product_Units" FromRole="Product" ToRole="Units" />
         </EntityType>
         <EntityType Name="ProductCategory">
           <Key>
@@ -512,6 +541,14 @@
           <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Units">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Product_Units" FromRole="Units" ToRole="Product" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -671,6 +708,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Product_Units">
+          <End Role="Units" Type="Self.Units" Multiplicity="0..1" />
+          <End Role="Product" Type="Self.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Units">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="IdUnits" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Role">
           <End Role="Role" Type="Self.Role" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -698,6 +747,7 @@
           <EntitySet Name="StatusOrder" EntityType="Self.StatusOrder" />
           <EntitySet Name="Street" EntityType="Self.Street" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Units" EntityType="Self.Units" />
           <EntitySet Name="User" EntityType="Self.User" />
           <AssociationSet Name="FK_PickPoint_City" Association="Self.FK_PickPoint_City">
             <End Role="City" EntitySet="City" />
@@ -745,6 +795,10 @@
           </AssociationSet>
           <AssociationSet Name="FK_Product_ProductSupplier" Association="Self.FK_Product_ProductSupplier">
             <End Role="ProductSupplier" EntitySet="ProductSupplier" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Product_Units" Association="Self.FK_Product_Units">
+            <End Role="Units" EntitySet="Units" />
             <End Role="Product" EntitySet="Product" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
@@ -811,7 +865,9 @@
           <EntitySetMapping Name="Product">
             <EntityTypeMapping TypeName="Pet_shopModel.Product">
               <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ProductArticleNumber" ColumnName="ProductArticleNumber" />
+                <ScalarProperty Name="IdUnits" ColumnName="IdUnits" />
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="ProductCost" ColumnName="ProductCost" />
                 <ScalarProperty Name="ProductDiscountAmount" ColumnName="ProductDiscountAmount" />
@@ -890,6 +946,14 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="version" ColumnName="version" />
                 <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Units">
+            <EntityTypeMapping TypeName="Pet_shopModel.Units">
+              <MappingFragment StoreEntitySet="Units">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

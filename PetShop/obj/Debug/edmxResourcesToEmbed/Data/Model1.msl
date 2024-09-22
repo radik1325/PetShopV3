@@ -54,7 +54,9 @@
     <EntitySetMapping Name="Product">
       <EntityTypeMapping TypeName="Pet_shopModel.Product">
         <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ProductArticleNumber" ColumnName="ProductArticleNumber" />
+          <ScalarProperty Name="IdUnits" ColumnName="IdUnits" />
           <ScalarProperty Name="ProductName" ColumnName="ProductName" />
           <ScalarProperty Name="ProductCost" ColumnName="ProductCost" />
           <ScalarProperty Name="ProductDiscountAmount" ColumnName="ProductDiscountAmount" />
@@ -133,6 +135,14 @@
           <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
           <ScalarProperty Name="version" ColumnName="version" />
           <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Units">
+      <EntityTypeMapping TypeName="Pet_shopModel.Units">
+        <MappingFragment StoreEntitySet="Units">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

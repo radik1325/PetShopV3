@@ -33,7 +33,7 @@
                 
                 <RowDefinition Height="90"></RowDefinition>
             </Grid.RowDefinitions>
-            <Label Content="id" Grid.Row="0" Grid.Column="0"></Label>
+            <Label x:Name="IdLabel" Content="id" Grid.Row="0" Grid.Column="0"></Label>
             <Label Content="Категория" Grid.Row="1" Grid.Column="0"></Label>
             <Label Content="Количество на складе" Grid.Row="2" Grid.Column="0"></Label>
             <Label Content="Еденица измерения" Grid.Row="3" Grid.Column="0"></Label>
@@ -49,7 +49,7 @@
                      IsReadOnly="True" IsEnabled="False"> </TextBox>
             <ComboBox x:Name="CategoryComboBox" Grid.Row="1" Grid.Column="1" DisplayMemberPath="CategoryName"></ComboBox> <!--DisplayMemberPath нАЗВАНИЕ СТОЛБЦА-->
             <TextBox x:Name="CountTextBox" Grid.Row="2" Grid.Column="1"></TextBox>
-            <TextBox x:Name="EdTextBox" Grid.Row="3" Grid.Column="1"></TextBox>
+            <TextBox x:Name="UnitTextBox" Grid.Row="3" Grid.Column="1"></TextBox>
             <Image x:Name="ProductImage" Margin="10" Grid.Row="4" Grid.Column="1" Grid.RowSpan="5">
                 <Image.Source>
                     <Binding Path="ProductPhoto">
