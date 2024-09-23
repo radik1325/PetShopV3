@@ -68,7 +68,7 @@
                         <TextBlock Grid.Column="2" Text="{Binding ProductQuantityInStock, StringFormat={}Наличие на складе: {0}}" VerticalAlignment="Center"
                     HorizontalAlignment="Center"></TextBlock>
 
-                        <Button x:Name="DeleteButton" Content="Удалить" Click="DeleteButton_Click" Grid.Column="3"></Button>
+                       
                     </Grid>
             </DataTemplate>
             </ListView.ItemTemplate>

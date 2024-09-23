@@ -174,6 +174,8 @@ namespace PetShop.Pages
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+
                 }
 
             }
@@ -181,7 +183,50 @@ namespace PetShop.Pages
             catch (Exception ex)
             {
                 MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                
             }
+
+            var selectedCategory = CategoryComboBox.SelectedItem as Data.ProductCategory;
+            _currentProduct.ProductCategory = selectedCategory.CategoryId;
+            _currentProduct.ProductQuantityInStock = Convert.ToInt32(CountTextBox.Text);
+            _currentProduct.ProductCost =Convert.ToDecimal(CostTextBox.Text);
+            _currentProduct.ProductDescription = DescriptionTextBox.Text;
+            
+            var searchUnit = (from item in Data.Pet_shopEntities.GetContext().Units
+                              where item.Name == UnitTextBox.Text
+                              select item).FirstOrDefault();
+            if(searchUnit != null)
+            {
+                _currentProduct.IdUnits = searchUnit.id;
+
+            }
+            else
+            {
+                Data.Units units = new Data.Units();
+                {
+                    Name = UnitTextBox.Text;
+                };
+                Data.Pet_shopEntities.GetContext().Units.Add(units);
+                Data.Pet_shopEntities.GetContext().SaveChanges();
+                _currentProduct.IdUnits =units.id;
+                  
+
+            }
+
+            if(FlagAddorEdit == "add")
+            {
+                Data.Pet_shopEntities.GetContext().Product.Add(_currentProduct);
+                Data.Pet_shopEntities.GetContext().SaveChanges();
+                MessageBox.Show("Успешно добавлено","Успех",MessageBoxButton.OK,MessageBoxImage.Information);
+            }
+
+            if (FlagAddorEdit == "edit")
+            {
+                
+                Data.Pet_shopEntities.GetContext().SaveChanges();
+                MessageBox.Show("Успешно добавлено", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+
         }
 
         private void ProductImage_MouseDown(object sender, MouseButtonEventArgs e)

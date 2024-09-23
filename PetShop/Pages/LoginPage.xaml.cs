@@ -14,13 +14,15 @@ namespace PetShop.Pages
     {
         private string captchaText;
         private readonly Random random = new Random();
-        private bool isCaptchaVisible = false; // Поле для отслеживания отображения капчи
+        private bool isCaptchaVisible = false; 
 
         public LoginPage()
         {
             InitializeComponent();
             GenerateCaptcha();
-            CaptchaContainer.Visibility = Visibility.Collapsed; // Изначально скрываем капчу
+            CaptchaContainer.Visibility = Visibility.Collapsed;
+            LoginTextBox.Text = "pixil59@gmail.com";
+            LoginPassBox.Password = "2L6KZG";
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
