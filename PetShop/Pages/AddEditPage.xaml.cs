@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Drawing;
 
 namespace PetShop.Pages
 {
@@ -25,11 +28,12 @@ namespace PetShop.Pages
         public AddEditPage(Data.Product product)
         {
             InitializeComponent();
-            
 
-            if (product != null) {
-                
-                _currentProduct =product;
+
+            if (product != null)
+            {
+
+                _currentProduct = product;
                 FlagAddorEdit = "edit";
             }
             else
@@ -42,7 +46,8 @@ namespace PetShop.Pages
 
         public void Init()
         {
-            try {
+            try
+            {
                 CategoryComboBox.ItemsSource = Data.Pet_shopEntities.GetContext().ProductCategory.ToList();
                 if (FlagAddorEdit == "add")
                 {
@@ -75,8 +80,8 @@ namespace PetShop.Pages
                     CategoryComboBox.SelectedItem = Data.Pet_shopEntities.GetContext().ProductCategory.Where(d => d.CategoryId == _currentProduct.ProductCategory).FirstOrDefault();
                     //Product через xaml binding
                 }
-            } 
-            
+            }
+
             catch
             {
 
@@ -89,7 +94,121 @@ namespace PetShop.Pages
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                StringBuilder errors = new StringBuilder();
+                if (CategoryComboBox.SelectedItem == null)
+                {
+                    errors.AppendLine("Выберите категорию");
+                }
+                if (String.IsNullOrEmpty(CountTextBox.Text))
+                {
+                    errors.AppendLine("Заполните кол-во");
+                }
+                else
+                {
+                    var countTry = Int32.TryParse(CountTextBox.Text, out var reseltcount);
+                    if (!countTry)
+                    {
+                        errors.AppendLine("Количество целое число");
+                    }
+                    else
+                    {
+                        if (reseltcount < 0)
+                        {
+                            errors.AppendLine("Количество не может быть отрицательной");
+                        }
+                    }
+                }
+                if (String.IsNullOrEmpty(UnitTextBox.Text))
+                {
+                    errors.AppendLine("Заполните ед. измер.");
+                }
+                if (String.IsNullOrEmpty(NameTextBox.Text))
+                {
+                    errors.AppendLine("Заполните наименование");
+                }
+                if (String.IsNullOrEmpty(CostTextBox.Text))
+                {
+                    errors.AppendLine("Заполните стоимость");
+                }
+                else
+                {
+                    var costry = Decimal.TryParse(CostTextBox.Text, out var resultCost);
+                    if (!costry)
+                    {
+                        errors.AppendLine("Стоимость дробное число");
+                    }
+                    else
+                    {
+                        if (resultCost < 0)
+                        {
+                            errors.AppendLine("Стоимость не может быть отрицательной");
+                        }
+                        else
+                        {
+                            string text = CostTextBox.Text;
+                            string[] parts = text.Split(new char[] { ',' });
+                            if (parts.Length > 1)
+                            {
+                                int decimalPlaces = parts[1].Length;
+                                if (decimalPlaces > 2)
+                                {
+                                    errors.AppendLine("У стоимости должно быть два знака после заяпятой");
+                                }
+                            }
+                        }
+                    }
+                }
+                if (String.IsNullOrEmpty(SupplierTextBox.Text))
+                {
+                    errors.AppendLine("Заполните поставщика");
+                }
+                if (String.IsNullOrEmpty(DescriptionTextBox.Text))
+                {
+                    errors.AppendLine("Заполните описание");
+                }
 
+                //Проверка на фото
+
+                if (errors.Length > 0)
+                {
+                    MessageBox.Show(errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+            }
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void ProductImage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Images|*.jpg;*.jpeg;*.png;";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                
+                BitmapImage bitmap = new BitmapImage();
+                bitmap.BeginInit();
+                bitmap.UriSource = new Uri(openFileDialog.FileName);
+                bitmap.EndInit();
+
+                if (bitmap.PixelWidth == 300 && bitmap.PixelHeight == 200)
+                {
+                    ProductImage.Source = bitmap; 
+                }
+                else
+                {
+                    MessageBox.Show("Размер изображения должен быть 300x200 пикселей.", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+
+
+
+
+            }
         }
     }
 }

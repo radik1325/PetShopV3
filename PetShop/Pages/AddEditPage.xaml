@@ -50,7 +50,8 @@
             <ComboBox x:Name="CategoryComboBox" Grid.Row="1" Grid.Column="1" DisplayMemberPath="CategoryName"></ComboBox> <!--DisplayMemberPath нАЗВАНИЕ СТОЛБЦА-->
             <TextBox x:Name="CountTextBox" Grid.Row="2" Grid.Column="1"></TextBox>
             <TextBox x:Name="UnitTextBox" Grid.Row="3" Grid.Column="1"></TextBox>
-            <Image x:Name="ProductImage" Margin="10" Grid.Row="4" Grid.Column="1" Grid.RowSpan="5">
+            <Image x:Name="ProductImage" Margin="10" Grid.Row="4" Grid.Column="1" Grid.RowSpan="5"
+                   MouseDown="ProductImage_MouseDown">
                 <Image.Source>
                     <Binding Path="ProductPhoto">
                         <Binding.TargetNullValue>
