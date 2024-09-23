@@ -102,7 +102,16 @@ namespace PetShop.Pages
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+               // var selected = (sender as Button).DataContext as Data.Product;
+                    //var orderProduct = Data.Pet_shopEntities.GetContext().OrderProduct
+                    //.Where(d => d.ProductArticleNumber == selected.Id).Tolist();
+            }
+            catch
+            {
 
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)

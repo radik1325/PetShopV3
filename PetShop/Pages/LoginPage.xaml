@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:PetShop.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="LoginPage" Background="White">
+      Title="ИС Товары для животных - Авторизация" Background="White">
 
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">

@@ -32,7 +32,7 @@
     </Key>
     <Property Name="ID" Type="int" Nullable="false" />
     <Property Name="OrderID" Type="int" Nullable="false" />
-    <Property Name="ProductArticleNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProductArticleNumber" Type="int" Nullable="false" />
     <Property Name="ProductCount" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PickPoint">
@@ -47,9 +47,9 @@
   </EntityType>
   <EntityType Name="Product">
     <Key>
-      <PropertyRef Name="ProductArticleNumber" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="int" />
+    <Property Name="Id" Type="int" Nullable="false" />
     <Property Name="ProductArticleNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
     <Property Name="IdUnits" Type="int" />
     <Property Name="ProductName" Type="int" Nullable="false" />
@@ -127,7 +127,7 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Name" Type="nchar" MaxLength="10" />
   </EntityType>
   <EntityType Name="User">
@@ -190,12 +190,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_OrderProduct_Product">
+  <Association Name="FK_OrderProduct_Product1">
     <End Role="Product" Type="Self.Product" Multiplicity="1" />
     <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Product">
-        <PropertyRef Name="ProductArticleNumber" />
+        <PropertyRef Name="Id" />
       </Principal>
       <Dependent Role="OrderProduct">
         <PropertyRef Name="ProductArticleNumber" />
@@ -226,7 +226,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_PickPoint_Street">
+  <Association Name="FK_PickPoint_Street1">
     <End Role="Street" Type="Self.Street" Multiplicity="1" />
     <End Role="PickPoint" Type="Self.PickPoint" Multiplicity="*" />
     <ReferentialConstraint>
@@ -343,7 +343,7 @@
       <End Role="Order" EntitySet="Order" />
       <End Role="OrderProduct" EntitySet="OrderProduct" />
     </AssociationSet>
-    <AssociationSet Name="FK_OrderProduct_Product" Association="Self.FK_OrderProduct_Product">
+    <AssociationSet Name="FK_OrderProduct_Product1" Association="Self.FK_OrderProduct_Product1">
       <End Role="Product" EntitySet="Product" />
       <End Role="OrderProduct" EntitySet="OrderProduct" />
     </AssociationSet>
@@ -355,7 +355,7 @@
       <End Role="Index" EntitySet="Index" />
       <End Role="PickPoint" EntitySet="PickPoint" />
     </AssociationSet>
-    <AssociationSet Name="FK_PickPoint_Street" Association="Self.FK_PickPoint_Street">
+    <AssociationSet Name="FK_PickPoint_Street1" Association="Self.FK_PickPoint_Street1">
       <End Role="Street" EntitySet="Street" />
       <End Role="PickPoint" EntitySet="PickPoint" />
     </AssociationSet>

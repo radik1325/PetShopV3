@@ -37,7 +37,7 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" />
           <Property Name="OrderID" Type="int" Nullable="false" />
-          <Property Name="ProductArticleNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ProductArticleNumber" Type="int" Nullable="false" />
           <Property Name="ProductCount" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="PickPoint">
@@ -52,9 +52,9 @@
         </EntityType>
         <EntityType Name="Product">
           <Key>
-            <PropertyRef Name="ProductArticleNumber" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" />
+          <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="ProductArticleNumber" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="IdUnits" Type="int" />
           <Property Name="ProductName" Type="int" Nullable="false" />
@@ -132,7 +132,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="User">
@@ -195,12 +195,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderProduct_Product">
+        <Association Name="FK_OrderProduct_Product1">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
-              <PropertyRef Name="ProductArticleNumber" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="OrderProduct">
               <PropertyRef Name="ProductArticleNumber" />
@@ -231,7 +231,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PickPoint_Street">
+        <Association Name="FK_PickPoint_Street1">
           <End Role="Street" Type="Self.Street" Multiplicity="1" />
           <End Role="PickPoint" Type="Self.PickPoint" Multiplicity="*" />
           <ReferentialConstraint>
@@ -348,7 +348,7 @@
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderProduct" EntitySet="OrderProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderProduct_Product" Association="Self.FK_OrderProduct_Product">
+          <AssociationSet Name="FK_OrderProduct_Product1" Association="Self.FK_OrderProduct_Product1">
             <End Role="Product" EntitySet="Product" />
             <End Role="OrderProduct" EntitySet="OrderProduct" />
           </AssociationSet>
@@ -360,7 +360,7 @@
             <End Role="Index" EntitySet="Index" />
             <End Role="PickPoint" EntitySet="PickPoint" />
           </AssociationSet>
-          <AssociationSet Name="FK_PickPoint_Street" Association="Self.FK_PickPoint_Street">
+          <AssociationSet Name="FK_PickPoint_Street1" Association="Self.FK_PickPoint_Street1">
             <End Role="Street" EntitySet="Street" />
             <End Role="PickPoint" EntitySet="PickPoint" />
           </AssociationSet>
@@ -432,10 +432,10 @@
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" />
           <Property Name="OrderID" Type="Int32" Nullable="false" />
-          <Property Name="ProductArticleNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductArticleNumber" Type="Int32" Nullable="false" />
           <Property Name="ProductCount" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Order" Relationship="Self.FK_OrderProduct_Order1" FromRole="OrderProduct" ToRole="Order" />
-          <NavigationProperty Name="Product" Relationship="Self.FK_OrderProduct_Product" FromRole="OrderProduct" ToRole="Product" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_OrderProduct_Product1" FromRole="OrderProduct" ToRole="Product" />
         </EntityType>
         <EntityType Name="PickPoint">
           <Key>
@@ -449,13 +449,13 @@
           <NavigationProperty Name="City" Relationship="Self.FK_PickPoint_City" FromRole="PickPoint" ToRole="City" />
           <NavigationProperty Name="Index" Relationship="Self.FK_PickPoint_Index" FromRole="PickPoint" ToRole="Index" />
           <NavigationProperty Name="Order" Relationship="Self.FK_Order_PickPoint" FromRole="PickPoint" ToRole="Order" />
-          <NavigationProperty Name="Street" Relationship="Self.FK_PickPoint_Street" FromRole="PickPoint" ToRole="Street" />
+          <NavigationProperty Name="Street" Relationship="Self.FK_PickPoint_Street1" FromRole="PickPoint" ToRole="Street" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
-            <PropertyRef Name="ProductArticleNumber" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="ProductArticleNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="IdUnits" Type="Int32" />
           <Property Name="ProductName" Type="Int32" Nullable="false" />
@@ -469,7 +469,7 @@
           <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ProductPhotoName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="ProductPhoto" Type="Binary" MaxLength="Max" FixedLength="false" />
-          <NavigationProperty Name="OrderProduct" Relationship="Self.FK_OrderProduct_Product" FromRole="Product" ToRole="OrderProduct" />
+          <NavigationProperty Name="OrderProduct" Relationship="Self.FK_OrderProduct_Product1" FromRole="Product" ToRole="OrderProduct" />
           <NavigationProperty Name="ProductCategory1" Relationship="Self.FK_Product_ProductCategory" FromRole="Product" ToRole="ProductCategory" />
           <NavigationProperty Name="ProductManufacture" Relationship="Self.FK_Product_ProductManufacture" FromRole="Product" ToRole="ProductManufacture" />
           <NavigationProperty Name="ProductName1" Relationship="Self.FK_Product_ProductName" FromRole="Product" ToRole="ProductName" />
@@ -530,7 +530,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="Street1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="PickPoint" Relationship="Self.FK_PickPoint_Street" FromRole="Street" ToRole="PickPoint" />
+          <NavigationProperty Name="PickPoint" Relationship="Self.FK_PickPoint_Street1" FromRole="Street" ToRole="PickPoint" />
         </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -546,7 +546,7 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Product_Units" FromRole="Units" ToRole="Product" />
         </EntityType>
@@ -636,19 +636,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_OrderProduct_Product">
+        <Association Name="FK_OrderProduct_Product1">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="OrderProduct" Type="Self.OrderProduct" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
-              <PropertyRef Name="ProductArticleNumber" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="OrderProduct">
               <PropertyRef Name="ProductArticleNumber" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_PickPoint_Street">
+        <Association Name="FK_PickPoint_Street1">
           <End Role="Street" Type="Self.Street" Multiplicity="1" />
           <End Role="PickPoint" Type="Self.PickPoint" Multiplicity="*" />
           <ReferentialConstraint>
@@ -773,11 +773,11 @@
             <End Role="Order" EntitySet="Order" />
             <End Role="OrderProduct" EntitySet="OrderProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK_OrderProduct_Product" Association="Self.FK_OrderProduct_Product">
+          <AssociationSet Name="FK_OrderProduct_Product1" Association="Self.FK_OrderProduct_Product1">
             <End Role="Product" EntitySet="Product" />
             <End Role="OrderProduct" EntitySet="OrderProduct" />
           </AssociationSet>
-          <AssociationSet Name="FK_PickPoint_Street" Association="Self.FK_PickPoint_Street">
+          <AssociationSet Name="FK_PickPoint_Street1" Association="Self.FK_PickPoint_Street1">
             <End Role="Street" EntitySet="Street" />
             <End Role="PickPoint" EntitySet="PickPoint" />
           </AssociationSet>

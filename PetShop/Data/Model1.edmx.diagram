@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="696149904c6a4246b7c23ef70719a910" Name="Diagram1">
+      <Diagram DiagramId="db59756fb72548f394363adc1a1034ac" Name="Diagram1">
         <EntityTypeShape EntityType="Pet_shopModel.City" Width="1.5" PointX="1.5" PointY="24.375" IsExpanded="true" />
         <EntityTypeShape EntityType="Pet_shopModel.Index" Width="1.5" PointX="1.5" PointY="26.75" IsExpanded="true" />
         <EntityTypeShape EntityType="Pet_shopModel.Order" Width="1.5" PointX="3" PointY="19.875" IsExpanded="true" />
@@ -27,8 +27,8 @@
         <AssociationConnector Association="Pet_shopModel.FK_Order_StatusOrder" ManuallyRouted="false" />
         <AssociationConnector Association="Pet_shopModel.FK_Order_User" ManuallyRouted="false" />
         <AssociationConnector Association="Pet_shopModel.FK_OrderProduct_Order1" ManuallyRouted="false" />
-        <AssociationConnector Association="Pet_shopModel.FK_OrderProduct_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="Pet_shopModel.FK_PickPoint_Street" ManuallyRouted="false" />
+        <AssociationConnector Association="Pet_shopModel.FK_OrderProduct_Product1" ManuallyRouted="false" />
+        <AssociationConnector Association="Pet_shopModel.FK_PickPoint_Street1" ManuallyRouted="false" />
         <AssociationConnector Association="Pet_shopModel.FK_Product_ProductCategory" ManuallyRouted="false" />
         <AssociationConnector Association="Pet_shopModel.FK_Product_ProductManufacture" ManuallyRouted="false" />
         <AssociationConnector Association="Pet_shopModel.FK_Product_ProductName" ManuallyRouted="false" />

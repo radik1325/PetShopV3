@@ -16,7 +16,7 @@ namespace PetShop.Data
     {
         public int ID { get; set; }
         public int OrderID { get; set; }
-        public string ProductArticleNumber { get; set; }
+        public int ProductArticleNumber { get; set; }
         public int ProductCount { get; set; }
     
         public virtual Order Order { get; set; }

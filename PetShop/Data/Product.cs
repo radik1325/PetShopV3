@@ -20,7 +20,7 @@ namespace PetShop.Data
             this.OrderProduct = new HashSet<OrderProduct>();
         }
     
-        public Nullable<int> Id { get; set; }
+        public int Id { get; set; }
         public string ProductArticleNumber { get; set; }
         public Nullable<int> IdUnits { get; set; }
         public int ProductName { get; set; }

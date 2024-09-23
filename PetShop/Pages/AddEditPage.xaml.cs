@@ -169,13 +169,12 @@ namespace PetShop.Pages
                     errors.AppendLine("Заполните описание");
                 }
 
-                //Проверка на фото
+                //Проверка на фото реализована в самом диалоге
 
                 if (errors.Length > 0)
                 {
                     MessageBox.Show(errors.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
                     return;
-
                 }
 
             }
@@ -187,10 +186,12 @@ namespace PetShop.Pages
             }
 
             var selectedCategory = CategoryComboBox.SelectedItem as Data.ProductCategory;
-            _currentProduct.ProductCategory = selectedCategory.CategoryId;
+            _currentProduct.ProductCategory = selectedCategory.CategoryId;//проверка подключенной таблицы таблицы
             _currentProduct.ProductQuantityInStock = Convert.ToInt32(CountTextBox.Text);
             _currentProduct.ProductCost =Convert.ToDecimal(CostTextBox.Text);
             _currentProduct.ProductDescription = DescriptionTextBox.Text;
+            
+            
             
             var searchUnit = (from item in Data.Pet_shopEntities.GetContext().Units
                               where item.Name == UnitTextBox.Text
@@ -202,18 +203,16 @@ namespace PetShop.Pages
             }
             else
             {
-                Data.Units units = new Data.Units();
+                Data.Units new_units = new Data.Units()
                 {
-                    Name = UnitTextBox.Text;
+                    Name = UnitTextBox.Text
                 };
-                Data.Pet_shopEntities.GetContext().Units.Add(units);
+                Data.Pet_shopEntities.GetContext().Units.Add(new_units);
                 Data.Pet_shopEntities.GetContext().SaveChanges();
-                _currentProduct.IdUnits =units.id;
-                  
-
+                _currentProduct.IdUnits = new_units.id;
             }
-
-            if(FlagAddorEdit == "add")
+           
+            if (FlagAddorEdit == "add")
             {
                 Data.Pet_shopEntities.GetContext().Product.Add(_currentProduct);
                 Data.Pet_shopEntities.GetContext().SaveChanges();
@@ -222,9 +221,15 @@ namespace PetShop.Pages
 
             if (FlagAddorEdit == "edit")
             {
-                
-                Data.Pet_shopEntities.GetContext().SaveChanges();
-                MessageBox.Show("Успешно добавлено", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                try
+                {
+                    Data.Pet_shopEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Успешно добавлено", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             }
 
         }
