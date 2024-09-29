@@ -134,7 +134,7 @@ namespace PetShop.Pages
                 {
                     Classes.Manager.CurrentUser = null;
                 }
-                Classes.Manager.MainFrame.GoBack();
+                Classes.Manager.MainFrame.Navigate(new Pages.LoginPage());
             }
         }
 
