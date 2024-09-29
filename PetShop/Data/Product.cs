@@ -22,14 +22,14 @@ namespace PetShop.Data
     
         public int Id { get; set; }
         public string ProductArticleNumber { get; set; }
-        public Nullable<int> IdUnits { get; set; }
+        public int IdUnits { get; set; }
         public int ProductName { get; set; }
         public decimal ProductCost { get; set; }
-        public int ProductDiscountAmount { get; set; }
-        public int ProductManufacturer { get; set; }
+        public Nullable<int> ProductDiscountAmount { get; set; }
+        public Nullable<int> ProductManufacturer { get; set; }
         public int ProductSupplier { get; set; }
         public int ProductCategory { get; set; }
-        public int ProductDiscountNow { get; set; }
+        public Nullable<int> ProductDiscountNow { get; set; }
         public int ProductQuantityInStock { get; set; }
         public string ProductDescription { get; set; }
         public string ProductPhotoName { get; set; }

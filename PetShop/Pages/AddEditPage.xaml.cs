@@ -23,6 +23,7 @@ namespace PetShop.Pages
     /// </summary>
     public partial class AddEditPage : Page
     {
+        public byte[] imageBytes =null;
         public string FlagAddorEdit = "default";
         public Data.Product _currentProduct = new Data.Product();
         public AddEditPage(Data.Product product)
@@ -51,8 +52,10 @@ namespace PetShop.Pages
                 CategoryComboBox.ItemsSource = Data.Pet_shopEntities.GetContext().ProductCategory.ToList();
                 if (FlagAddorEdit == "add")
                 {
-                    IdTextBox.Visibility = Visibility.Hidden;
-                    IdLabel.Visibility = Visibility.Hidden;
+                    IdTextBox.Visibility = Visibility.Visible;
+                    IdLabel.Visibility = Visibility.Visible;
+                    IdTextBox.Text = Data.Pet_shopEntities.GetContext().Product.Max(d => d.Id + 1).ToString();// вопрос про id
+                    
                     CategoryComboBox.SelectedItem = null;
                     CountTextBox.Text = string.Empty;
                     UnitTextBox.Text = string.Empty;
@@ -60,14 +63,14 @@ namespace PetShop.Pages
                     CostTextBox.Text = string.Empty;
                     SupplierTextBox.Text = string.Empty;
                     DescriptionTextBox.Text = string.Empty;
-
+                    
                     //Product кинуть заглушку
                 }
                 else if (FlagAddorEdit == "edit")
                 {
-                    IdTextBox.Visibility = Visibility.Visible;
-                    IdLabel.Visibility = Visibility.Visible;
-
+                    
+                    IdTextBox.Visibility = Visibility.Hidden;
+                    IdLabel.Visibility = Visibility.Hidden;
                     CategoryComboBox.SelectedItem = null;
                     CountTextBox.Text = _currentProduct.ProductQuantityInStock.ToString();
                     UnitTextBox.Text = _currentProduct.Units.Name;
@@ -76,7 +79,7 @@ namespace PetShop.Pages
                     SupplierTextBox.Text = _currentProduct.ProductSupplier1.SupplierName;
                     DescriptionTextBox.Text = _currentProduct.ProductDescription;
 
-                    IdTextBox.Text = Data.Pet_shopEntities.GetContext().Product.Max(d => d.Id + 1).ToString();// вопрос про id
+                    
                     CategoryComboBox.SelectedItem = Data.Pet_shopEntities.GetContext().ProductCategory.Where(d => d.CategoryId == _currentProduct.ProductCategory).FirstOrDefault();
                     //Product через xaml binding
                 }
@@ -89,7 +92,7 @@ namespace PetShop.Pages
         }
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Classes.Manager.MainFrame.Navigate(new Pages.AdminLkPage());
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -211,12 +214,66 @@ namespace PetShop.Pages
                 Data.Pet_shopEntities.GetContext().SaveChanges();
                 _currentProduct.IdUnits = new_units.id;
             }
-           
+
+            
+
+            var searchName = (from item in Data.Pet_shopEntities.GetContext().ProductName
+                              where item.NameName == NameTextBox.Text
+                              select item).FirstOrDefault();
+            if (searchName != null)
+            {
+                _currentProduct.ProductName = searchName.NameId;
+
+            }
+            else
+            {
+                Data.ProductName new_name = new Data.ProductName()
+                {
+                    NameName = NameTextBox.Text
+                };
+                Data.Pet_shopEntities.GetContext().ProductName.Add(new_name);
+                Data.Pet_shopEntities.GetContext().SaveChanges();
+                _currentProduct.ProductName = new_name.NameId;
+            }
+
+
+            var searchSupplier = (from item in Data.Pet_shopEntities.GetContext().ProductSupplier
+                              where item.SupplierName == SupplierTextBox.Text
+                              select item).FirstOrDefault();
+            if (searchSupplier != null)
+            {
+                _currentProduct.ProductSupplier = searchSupplier.SupplierId;
+
+            }
+            else
+            {
+                Data.ProductSupplier new_supplier = new Data.ProductSupplier()
+                {
+                    SupplierName = SupplierTextBox.Text
+                };
+                Data.Pet_shopEntities.GetContext().ProductSupplier.Add(new_supplier);
+                Data.Pet_shopEntities.GetContext().SaveChanges();
+                _currentProduct.ProductSupplier = new_supplier.SupplierId;
+            }
+
+
+            if (imageBytes != null)
+            {
+                _currentProduct.ProductPhoto = imageBytes;
+                imageBytes = null;
+            }
+
             if (FlagAddorEdit == "add")
             {
+                var searchManufact = (from item in Data.Pet_shopEntities.GetContext().ProductManufacture
+                                        where item.ManufactureName == "Производитель не указан"
+                                      select item).FirstOrDefault();
+                _currentProduct.ProductManufacturer = searchManufact.ManufactureId;
                 Data.Pet_shopEntities.GetContext().Product.Add(_currentProduct);
                 Data.Pet_shopEntities.GetContext().SaveChanges();
                 MessageBox.Show("Успешно добавлено","Успех",MessageBoxButton.OK,MessageBoxImage.Information);
+                Classes.Manager.MainFrame.Navigate(new Pages.AdminLkPage());
+                
             }
 
             if (FlagAddorEdit == "edit")
@@ -225,6 +282,8 @@ namespace PetShop.Pages
                 {
                     Data.Pet_shopEntities.GetContext().SaveChanges();
                     MessageBox.Show("Успешно добавлено", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Classes.Manager.MainFrame.Navigate(new Pages.AdminLkPage());
+
                 }
                 catch(Exception ex)
                 {
@@ -234,7 +293,7 @@ namespace PetShop.Pages
 
         }
 
-        private void ProductImage_MouseDown(object sender, MouseButtonEventArgs e)
+        public void ProductImage_MouseDown(object sender, MouseButtonEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Images|*.jpg;*.jpeg;*.png;";
@@ -248,7 +307,8 @@ namespace PetShop.Pages
 
                 if (bitmap.PixelWidth == 300 && bitmap.PixelHeight == 200)
                 {
-                    ProductImage.Source = bitmap; 
+                    ProductImage.Source = bitmap;
+                    imageBytes = File.ReadAllBytes(openFileDialog.FileName);
                 }
                 else
                 {

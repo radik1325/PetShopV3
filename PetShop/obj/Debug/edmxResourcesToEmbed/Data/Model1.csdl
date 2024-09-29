@@ -61,16 +61,16 @@
     <Key>
       <PropertyRef Name="Id" />
     </Key>
-    <Property Name="Id" Type="Int32" Nullable="false" />
-    <Property Name="ProductArticleNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-    <Property Name="IdUnits" Type="Int32" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductArticleNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="IdUnits" Type="Int32" Nullable="false" />
     <Property Name="ProductName" Type="Int32" Nullable="false" />
     <Property Name="ProductCost" Type="Decimal" Precision="19" Scale="2" Nullable="false" />
-    <Property Name="ProductDiscountAmount" Type="Int32" Nullable="false" />
-    <Property Name="ProductManufacturer" Type="Int32" Nullable="false" />
+    <Property Name="ProductDiscountAmount" Type="Int32" />
+    <Property Name="ProductManufacturer" Type="Int32" />
     <Property Name="ProductSupplier" Type="Int32" Nullable="false" />
     <Property Name="ProductCategory" Type="Int32" Nullable="false" />
-    <Property Name="ProductDiscountNow" Type="Int32" Nullable="false" />
+    <Property Name="ProductDiscountNow" Type="Int32" />
     <Property Name="ProductQuantityInStock" Type="Int32" Nullable="false" />
     <Property Name="ProductDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="ProductPhotoName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
@@ -102,7 +102,7 @@
     <Key>
       <PropertyRef Name="NameId" />
     </Key>
-    <Property Name="NameId" Type="Int32" Nullable="false" />
+    <Property Name="NameId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="NameName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Product" Relationship="Self.FK_Product_ProductName" FromRole="ProductName" ToRole="Product" />
   </EntityType>
@@ -110,7 +110,7 @@
     <Key>
       <PropertyRef Name="SupplierId" />
     </Key>
-    <Property Name="SupplierId" Type="Int32" Nullable="false" />
+    <Property Name="SupplierId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="SupplierName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Product" Relationship="Self.FK_Product_ProductSupplier" FromRole="ProductSupplier" ToRole="Product" />
   </EntityType>
@@ -153,7 +153,7 @@
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Name" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="Product" Relationship="Self.FK_Product_Units" FromRole="Units" ToRole="Product" />
   </EntityType>
   <EntityType Name="User">
@@ -279,7 +279,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Product_ProductManufacture">
-    <End Role="ProductManufacture" Type="Self.ProductManufacture" Multiplicity="1" />
+    <End Role="ProductManufacture" Type="Self.ProductManufacture" Multiplicity="0..1" />
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ProductManufacture">
@@ -315,7 +315,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Product_Units">
-    <End Role="Units" Type="Self.Units" Multiplicity="0..1" />
+    <End Role="Units" Type="Self.Units" Multiplicity="1" />
     <End Role="Product" Type="Self.Product" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Units">

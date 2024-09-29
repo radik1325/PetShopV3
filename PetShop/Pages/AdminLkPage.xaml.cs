@@ -103,7 +103,27 @@ namespace PetShop.Pages
 
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try 
+            {
+                var selected = (sender as Button).DataContext as Data.Product;
+                var orderproduct = Data.Pet_shopEntities.GetContext().OrderProduct.Where(d => d.ProductArticleNumber == selected.Id).ToList();
+                if (orderproduct.Count > 0)
+                {
+                    MessageBox.Show("Товар который присутствует в заказе удалить нельзя", "error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                else
+                {
+                    Data.Pet_shopEntities.GetContext().Product.Remove(selected);
+                    Data.Pet_shopEntities.GetContext().SaveChanges();
+                    MessageBox.Show("Товар удален", "Успех", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Update();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
